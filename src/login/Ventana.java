@@ -156,16 +156,22 @@ public class Ventana extends JFrame{
 					flag2=true;
 				}
 				
-//				if(flag1 && flag2) {
-//					
-//					if(nombreField.getText().equals("@jsoto@sd")) {
-//					
-//						if(password.equals("password123"))
-//					JOptionPane.showMessageDialog(null, "Hola","Error", JOptionPane.);
-//				}
-//				
+				if(flag1 && flag2) {
+					
+					if(nombreField.getText().equals("relu_23@alu.mx")) {
+					
+						if(password.equals("password123")) {
+							JOptionPane.showMessageDialog(null, "Hola","Error", JOptionPane.ERROR_MESSAGE);
+						} else {
+							JOptionPane.showMessageDialog(null, "Ha ocurrido un error","Error", JOptionPane.WARNING_MESSAGE);
+						} 
+					} else {
+						JOptionPane.showMessageDialog(null, "Ha ocurrido un error","Error", JOptionPane.ERROR_MESSAGE);
+
+					}
 			}
-		});
+		}
+	});
 		
 		mipanel.add(ingresar);
 		return mipanel;
