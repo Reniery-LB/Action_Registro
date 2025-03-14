@@ -27,7 +27,7 @@ public class Ventana extends JFrame{
 		this.setTitle("Login");
 		this.setVisible(true);
 		this.setSize(1000,1000);
-		
+		this.setLayout(null);
 		this.setLocationRelativeTo(null);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,11 +36,12 @@ public class Ventana extends JFrame{
 		this.setMaximumSize(new Dimension(1000,1000));
 		this.setMinimumSize(new Dimension(400,400));
 		
-		this.setLayout(new BorderLayout());
+//		this.setLayout(new BorderLayout());
 		
-		this.add(this.login(), BorderLayout.WEST);
-		this.add(this.registro(), BorderLayout.EAST);
+		this.add(this.login());
+//		this.add(this.registro(), BorderLayout.EAST);
 		this.repaint();
+		this.revalidate();
 	}
 	
 	public JPanel login()
@@ -52,7 +53,7 @@ public class Ventana extends JFrame{
 		
 		mipanel.setBackground(Color.decode("#EFF3EA"));
 		mipanel.setOpaque(true);
-		mipanel.setSize(500,800);
+		mipanel.setSize(1000,1000);
 		mipanel.setLocation(0,0);
 		mipanel.setLayout(null); //QUITA EL MOLDE
 		
@@ -161,19 +162,35 @@ public class Ventana extends JFrame{
 					if(nombreField.getText().equals("relu_23@alu.mx")) {
 					
 						if(password.equals("password123")) {
-							JOptionPane.showMessageDialog(null, "Hola","Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Hola","Error", JOptionPane.WARNING_MESSAGE);
 						} else {
-							JOptionPane.showMessageDialog(null, "Ha ocurrido un error","Error", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Ha ocurrido un error","Error", JOptionPane.ERROR_MESSAGE);
 						} 
-					} else {
-						JOptionPane.showMessageDialog(null, "Ha ocurrido un error","Error", JOptionPane.ERROR_MESSAGE);
-
 					}
 			}
 		}
 	});
 		
 		mipanel.add(ingresar);
+		
+		//BOTON
+		JButton ir_registro = new JButton("IR A REGISTRO");
+		ir_registro.setSize(200, 40);
+		ir_registro.setLocation(176, 450);
+		ir_registro.setFont(new Font("Britannic",Font.BOLD,18));
+		ir_registro.setOpaque(true);
+		ir_registro.setBackground(Color.decode("#B9B28A"));
+		
+		ir_registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("registro");
+			}
+		});
+		
+		mipanel.add(ir_registro);
+		
 		return mipanel;
 	}
 	
@@ -185,11 +202,11 @@ public class Ventana extends JFrame{
 		
 		mipanel.setBackground(Color.decode("#A3D1C6"));
 		mipanel.setOpaque(true);
-		mipanel.setSize(500,800);
-		mipanel.setLocation(500,0);
+		mipanel.setSize(1000,1000);
+		mipanel.setLocation(0,0);
 		mipanel.setLayout(null); //QUITA EL MOLDE
 		
-		mipanel.setPreferredSize(new Dimension(500,800));
+//		mipanel.setPreferredSize(new Dimension(500,800));
 		//---------------------------
 		//TITULO
 		JLabel titulo = new JLabel("REGISTRO");
@@ -332,11 +349,44 @@ public class Ventana extends JFrame{
 		
 		mipanel.add(acceder);
 		
+		//BOTON
+		JButton ir_login = new JButton("IR A LOGIN");
+		ir_login.setSize(320, 40);
+		ir_login.setLocation(90, 570);
+		ir_login.setBackground(Color.decode("#FBFFE4"));
+		ir_login.setFont(new Font("Britannic",Font.BOLD,16));
+		
+		ir_login.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+			}
+		});
+		
+		mipanel.add(ir_login);
 
 		
 
 		return mipanel;
 	
+	}
+	
+	public void router(String route) {
+		
+		this.getContentPane().removeAll();
+		//this.getContentPane().remove(0);
+		
+		if(route.equals("registro")) {
+			this.add(this.registro());
+		}
+		
+		if (route.equals("login")){
+			this.add(this.login());
+		}
+
+		this.repaint();
+		this.revalidate();
 	}
 
 }
