@@ -11,9 +11,13 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -40,6 +44,63 @@ public class Ventana extends JFrame{
 		
 		this.add(this.login());
 //		this.add(this.registro(), BorderLayout.EAST);
+		
+		//BARRA
+		JMenuBar barra = new JMenuBar();
+		JMenu file = new JMenu("Archivo");
+		barra.add(file);
+
+		
+		//para las opciones del menu
+		
+		JMenuItem open = new JMenuItem("Abrir");
+		file.add(open);
+		
+		JMenuItem close = new JMenuItem("Cerrar");
+		file.add(close);
+		
+		JMenuItem guardar = new JMenuItem("Guardar");
+		file.add(guardar);
+		
+		JMenuItem guardarComo = new JMenuItem("Guardar como");
+		file.add(guardarComo);
+		
+		//MENU 2
+		JMenu menu_2 = new JMenu("Ayuda");
+		barra.add(menu_2);
+		
+		JCheckBoxMenuItem op_5 = new JCheckBoxMenuItem("Hola");
+		menu_2.add(op_5); 
+		
+		//MENU 3
+		JMenu menu_3 = new JMenu("Ventana");
+		barra.add(menu_3);
+		
+		JMenuItem registro = new JMenuItem("Registro");
+		menu_3.add(registro);
+		
+		registro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("registro");
+				
+			}
+		});
+		
+		JMenuItem acceder = new JMenuItem("Acceder");
+		menu_3.add(acceder);	
+		
+		acceder.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+			}
+		});
+		
+		
+		this.setJMenuBar(barra);
 		this.repaint();
 		this.revalidate();
 	}
