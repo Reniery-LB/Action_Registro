@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -47,37 +49,105 @@ public class Ventana extends JFrame{
 		
 		//BARRA
 		JMenuBar barra = new JMenuBar();
-		JMenu file = new JMenu("Archivo");
-		barra.add(file);
+		
+		//USUARIOS
+		JMenu menu_usuarios = new JMenu("Usuarios");
+		barra.add(menu_usuarios);
 
 		
 		//para las opciones del menu
 		
-		JMenuItem open = new JMenuItem("Abrir");
-		file.add(open);
+		JMenuItem alta = new JMenuItem("Alta");
+		menu_usuarios.add(alta);
 		
-		JMenuItem close = new JMenuItem("Cerrar");
-		file.add(close);
+		alta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("alta");
+				
+			}
+		});
 		
-		JMenuItem guardar = new JMenuItem("Guardar");
-		file.add(guardar);
+		JMenuItem baja = new JMenuItem("Baja");
+		menu_usuarios.add(baja);
 		
-		JMenuItem guardarComo = new JMenuItem("Guardar como");
-		file.add(guardarComo);
+		baja.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("baja");
+				
+			}
+		});
 		
-		//MENU 2
-		JMenu menu_2 = new JMenu("Ayuda");
-		barra.add(menu_2);
+		JMenuItem consultar = new JMenuItem("Consultar");
+		menu_usuarios.add(consultar);
 		
-		JCheckBoxMenuItem op_5 = new JCheckBoxMenuItem("Hola");
-		menu_2.add(op_5); 
+		consultar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("consultar");
+				
+			}
+		});
 		
-		//MENU 3
-		JMenu menu_3 = new JMenu("Ventana");
-		barra.add(menu_3);
+		//AYUDA
+		JMenu menu_ayuda = new JMenu("Ayuda");
+		barra.add(menu_ayuda);
+		
+		JMenuItem ayuda_1 = new JMenuItem("¿Cómo crear un usuario?");
+		menu_ayuda.add(ayuda_1);
+		
+		ayuda_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("ayuda1");
+				
+			}
+		});
+		
+		JMenuItem ayuda_2 = new JMenuItem("¿Cómo acceder al sistema?");
+		menu_ayuda.add(ayuda_2);
+		
+		ayuda_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("ayuda2");
+			}
+		});
+		
+		JMenuItem ayuda_3 = new JMenuItem("¿Qué pasa si olvidé mi contraseña?");
+		menu_ayuda.add(ayuda_3);
+		
+		ayuda_3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("ayuda3");
+			}
+		});
+		
+		//CUENTA
+		JMenu menu_cuenta = new JMenu("Cuenta");
+		barra.add(menu_cuenta);
+		
+		JMenuItem acceder = new JMenuItem("Login");
+		menu_cuenta.add(acceder);	
+		
+		acceder.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+			}
+		});
 		
 		JMenuItem registro = new JMenuItem("Registro");
-		menu_3.add(registro);
+		menu_cuenta.add(registro);
 		
 		registro.addActionListener(new ActionListener() {
 			
@@ -88,14 +158,16 @@ public class Ventana extends JFrame{
 			}
 		});
 		
-		JMenuItem acceder = new JMenuItem("Acceder");
-		menu_3.add(acceder);	
 		
-		acceder.addActionListener(new ActionListener() {
+		JMenuItem recuperacion = new JMenuItem("Recuperacion de cuenta");
+		menu_cuenta.add(recuperacion);
+		
+		recuperacion.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				router("login");
+				router("recuperacion");
+				
 			}
 		});
 		
@@ -237,7 +309,7 @@ public class Ventana extends JFrame{
 		//BOTON
 		JButton ir_registro = new JButton("IR A REGISTRO");
 		ir_registro.setSize(200, 40);
-		ir_registro.setLocation(176, 450);
+		ir_registro.setLocation(150, 450);
 		ir_registro.setFont(new Font("Britannic",Font.BOLD,18));
 		ir_registro.setOpaque(true);
 		ir_registro.setBackground(Color.decode("#B9B28A"));
@@ -432,20 +504,318 @@ public class Ventana extends JFrame{
 		return mipanel;
 	
 	}
+	//CUENTA:
+	public JPanel recuperacion() {
+		
+		JPanel mipanel = new JPanel();
+		
+		mipanel.setBackground(Color.decode("#FFEDFA"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(1000,1000);
+		mipanel.setLocation(0,0);
+		mipanel.setLayout(null); //QUITA EL MOLDE
+		
+		//TITULO
+		JLabel titulo = new JLabel("RECUPERACIÓN DE CUENTA");
+		titulo.setSize(600, 60);
+		titulo.setOpaque(true);
+		titulo.setBackground(Color.decode("#FFB8E0")); 
+		titulo.setLocation(180, 30);
+		titulo.setHorizontalAlignment(JLabel.CENTER);
+		titulo.setFont(new Font("Britannic",Font.BOLD,40));
+		
+		mipanel.add(titulo);
+		
+		return mipanel;
+	}
+	//USUARIOS:
+	
+	public JPanel alta() {
+		
+		JPanel mipanel = new JPanel();
+		
+		mipanel.setBackground(Color.decode("#80CBC4"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(1000,1000);
+		mipanel.setLocation(0,0);
+		mipanel.setLayout(null); //QUITA EL MOLDE
+		
+		//TITULO
+		JLabel titulo = new JLabel("ALTA DE CUENTA");
+		titulo.setSize(600, 60);
+		titulo.setOpaque(true);
+		titulo.setBackground(Color.decode("#B4EBE6")); 
+		titulo.setLocation(200, 30);
+		titulo.setHorizontalAlignment(JLabel.CENTER);
+		titulo.setFont(new Font("Britannic",Font.BOLD,40));
+		
+		mipanel.add(titulo);
+		
+		return mipanel;
+	}
+	
+	public JPanel baja() {
+		
+		JPanel mipanel = new JPanel();
+		
+		mipanel.setBackground(Color.decode("#D5C7A3"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(1000,1000);
+		mipanel.setLocation(0,0);
+		mipanel.setLayout(null); //QUITA EL MOLDE
+		
+		//TITULO
+		JLabel titulo = new JLabel("BAJA DE CUENTA");
+		titulo.setSize(600, 60);
+		titulo.setOpaque(true);
+		titulo.setBackground(Color.decode("#F2E2B1")); 
+		titulo.setLocation(200, 30);
+		titulo.setHorizontalAlignment(JLabel.CENTER);
+		titulo.setFont(new Font("Britannic",Font.BOLD,40));
+		
+		mipanel.add(titulo);
+		
+		return mipanel;
+	}
+	
+	public JPanel consultar() {
+		
+		Font fuente = new Font("Britannic",Font.BOLD,16);
+		
+		JPanel mipanel = new JPanel();
+		
+		mipanel.setBackground(Color.decode("#A3D1C6"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(1000,1000);
+		mipanel.setLocation(0,0);
+		mipanel.setLayout(null); //QUITA EL MOLDE
+		//---------------------------
+		//TITULO
+		JLabel titulo = new JLabel("BIENVENIDO");
+		titulo.setSize(250, 30);
+		titulo.setOpaque(false);
+		titulo.setBackground(Color.decode("#B3D8A8")); 
+		titulo.setLocation(400,60);
+		titulo.setHorizontalAlignment(JLabel.CENTER);
+		titulo.setFont(new Font("Britannic",Font.BOLD,34));
+		
+		mipanel.add(titulo);
+		//----------------------
+		//LABEL
+		JLabel Usuarios = new JLabel("USUARIOS");
+		Usuarios.setSize(230, 50);
+		Usuarios.setOpaque(true);
+		Usuarios.setBackground(Color.BLACK); 
+		Usuarios.setLocation(70, 200);
+		Usuarios.setHorizontalAlignment(JLabel.CENTER);
+		Usuarios.setFont(new Font("Britannic",Font.BOLD,21));
+		Usuarios.setForeground(Color.WHITE);
+		
+		mipanel.add(Usuarios);
+		
+		JLabel Num_Usuarios = new JLabel("97");
+		Num_Usuarios.setSize(230, 50);
+		Num_Usuarios.setOpaque(true);
+		Num_Usuarios.setBackground(Color.BLACK); 
+		Num_Usuarios.setLocation(70, 240);
+		Num_Usuarios.setHorizontalAlignment(JLabel.CENTER);
+		Num_Usuarios.setFont(new Font("Britannic",Font.BOLD,21));
+		Num_Usuarios.setForeground(Color.WHITE);
+		
+		mipanel.add(Num_Usuarios);
+		
+		//-----------------------------
+		//BOTON
+		JButton descargar = new JButton("Descargar");
+		descargar.setSize(100, 30);
+		descargar.setLocation(692, 350);
+		descargar.setFont(new Font("Britannic",Font.BOLD,12));
+		descargar.setBackground(Color.WHITE);
+		descargar.setOpaque(true);
+		
+		mipanel.add(descargar);
+		
+		//-----------------------------
+		//BOTON
+		JButton añadir = new JButton("Añadir");
+		añadir.setSize(100, 30);
+		añadir.setLocation(818, 350);
+		añadir.setFont(new Font("Britannic",Font.BOLD,12));
+		añadir.setBackground(Color.WHITE);
+		añadir.setOpaque(true);
+		
+		mipanel.add(añadir);
+		
+		String titles []= {"NOMBRE", "APELLIDO", "EDAD", " PIZZA?"};
+		
+		String data[][] = {
+				{"Jonathan", "Soto"    ,  "1992", "Yes"  },
+				{"Maria"   , "Lagunas" ,  "2013", "No"   },
+				{"Keyra"   , "Ochoa"   ,  "2005", "Yes"  },
+				{"Reniery" , "Lucero"  ,  "1986", "Yes"  },
+				{"Claudia" , "Beltran" ,  "1985", "Yes"  },
+				{"Raquel"  , "Lucero"  ,  "2011", "No"   },
+				{"Jonathan", "Soto"    ,  "1992", "Yes"  },
+				{"Maria"   , "Lagunas" ,  "2013", "No"   },
+				{"Keyra"   , "Ochoa"   ,  "2005", "Yes"  },
+				{"Reniery" , "Lucero"  ,  "1986", "Yes"  },
+				{"Claudia" , "Beltran" ,  "1985", "Yes"  },
+				{"Raquel"  , "Lucero"  ,  "2011", "No"   },
+				{"Jonathan", "Soto"    ,  "1992", "Yes"  },
+				{"Maria"   , "Lagunas" ,  "2013", "No"   },
+				{"Keyra"   , "Ochoa"   ,  "2005", "Yes"  },
+				{"Reniery" , "Lucero"  ,  "1986", "Yes"  },
+				{"Claudia" , "Beltran" ,  "1985", "Yes"  },
+				{"Raquel"  , "Lucero"  ,  "2011", "No"   },
+				{"Jonathan", "Soto"    ,  "1992", "Yes"  },
+				{"Maria"   , "Lagunas" ,  "2013", "No"   },
+				{"Keyra"   , "Ochoa"   ,  "2005", "Yes"  },
+				{"Reniery" , "Lucero"  ,  "1986", "Yes"  },
+				{"Claudia" , "Beltran" ,  "1985", "Yes"  },
+				{"Raquel"  , "Lucero"  ,  "2011", "No"   },
+				{"Jonathan", "Soto"    ,  "1992", "Yes"  },
+				{"Maria"   , "Lagunas" ,  "2013", "No"   },
+				{"Keyra"   , "Ochoa"   ,  "2005", "Yes"  },
+				{"Reniery" , "Lucero"  ,  "1986", "Yes"  },
+				{"Claudia" , "Beltran" ,  "1985", "Yes"  },
+				{"Raquel"  , "Lucero"  ,  "2011", "No"   },
+				{"Jonathan", "Soto"    ,  "1992", "Yes"  },
+				{"Maria"   , "Lagunas" ,  "2013", "No"   },
+				{"Keyra"   , "Ochoa"   ,  "2005", "Yes"  },
+				{"Reniery" , "Lucero"  ,  "1986", "Yes"  },
+				{"Claudia" , "Beltran" ,  "1985", "Yes"  },
+				{"Raquel"  , "Lucero"  ,  "2011", "No"   },
+		};
+		
+		JTable tabla = new JTable (data,titles);
+		
+		JScrollPane scrollPane = new JScrollPane(tabla);
+		scrollPane.setSize(850, 300);
+		scrollPane.setLocation(70,400);
+		
+		mipanel.add(scrollPane);
+		
+		return mipanel;
+	}
+	
+	//AYUDA:
+	public JPanel ayuda1() {
+		
+		JPanel mipanel = new JPanel();
+		
+		mipanel.setBackground(Color.decode("#A31D1D"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(1000,1000);
+		mipanel.setLocation(0,0);
+		mipanel.setLayout(null); //QUITA EL MOLDE
+		
+		//TITULO
+		JLabel titulo = new JLabel("¿Cómo crear un usuario?");
+		titulo.setSize(600, 60);
+		titulo.setOpaque(true);
+		titulo.setBackground(Color.decode("#D84040")); 
+		titulo.setLocation(200, 30);
+		titulo.setHorizontalAlignment(JLabel.CENTER);
+		titulo.setFont(new Font("Britannic",Font.BOLD,20));
+		
+		mipanel.add(titulo);
+		
+		return mipanel;
+	}
+	
+	public JPanel ayuda2() {
+		
+		JPanel mipanel = new JPanel();
+		
+		mipanel.setBackground(Color.decode("#504B38"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(1000,1000);
+		mipanel.setLocation(0,0);
+		mipanel.setLayout(null); //QUITA EL MOLDE
+		
+		//TITULO
+		JLabel titulo = new JLabel("¿Cómo acceder al sistema?");
+		titulo.setSize(600, 60);
+		titulo.setOpaque(true);
+		titulo.setBackground(Color.decode("#B9B28A")); 
+		titulo.setLocation(200, 30);
+		titulo.setHorizontalAlignment(JLabel.CENTER);
+		titulo.setFont(new Font("Britannic",Font.BOLD,20));
+		
+		mipanel.add(titulo);
+		
+		return mipanel;
+	}
+	
+	public JPanel ayuda3() {
+		
+		JPanel mipanel = new JPanel();
+		
+		mipanel.setBackground(Color.decode("#AA60C8"));
+		mipanel.setOpaque(true);
+		mipanel.setSize(1000,1000);
+		mipanel.setLocation(0,0);
+		mipanel.setLayout(null); //QUITA EL MOLDE
+		
+		//TITULO
+		JLabel titulo = new JLabel("¿Qué pasa si olvidé mi contraseña?");
+		titulo.setSize(600, 60);
+		titulo.setOpaque(true);
+		titulo.setBackground(Color.decode("#D69ADE")); 
+		titulo.setLocation(200, 30);
+		titulo.setHorizontalAlignment(JLabel.CENTER);
+		titulo.setFont(new Font("Britannic",Font.BOLD,20));
+		
+		mipanel.add(titulo);
+		
+		return mipanel;
+	}
+	
 	
 	public void router(String route) {
 		
 		this.getContentPane().removeAll();
 		//this.getContentPane().remove(0);
 		
+		//CUENTA:
 		if(route.equals("registro")) {
 			this.add(this.registro());
 		}
 		
-		if (route.equals("login")){
+		if(route.equals("login")){
 			this.add(this.login());
 		}
-
+		
+		if(route.equals("recuperacion")) {
+			this.add(this.recuperacion());
+		}
+		
+		//USUARIOS:
+		if(route.equals("alta")) {
+			this.add(this.alta());
+		}
+		
+		if(route.equals("baja")) {
+			this.add(this.baja());
+		}
+		
+		if(route.equals("consultar")) {
+			this.add(this.consultar());
+		}
+		
+		//AYUDA:
+		if(route.equals("ayuda1")) {
+			this.add(this.ayuda1());
+		}
+		
+		if(route.equals("ayuda2")) {
+			this.add(this.ayuda2());
+		}
+		
+		if(route.equals("ayuda3")) {
+			this.add(this.ayuda3());
+		}
+		
 		this.repaint();
 		this.revalidate();
 	}
